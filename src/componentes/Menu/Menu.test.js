@@ -32,3 +32,19 @@ test('Não deve renderizar um link para Extrato', () => {
   //espero que não esteja no meu documento
   expect(linkExtrato).not.toBeInTheDocument();
 });
+
+/**
+ * Teste de snapshot
+ */
+test('Deve renderizar uma lista de links com a classe link', () => {
+  render(<Menu />); // renderizando o menu
+
+  const links = screen.getAllByRole('link'); //criando a consulta
+
+  //verificando se os links estão com a classe correta
+  links.forEach((link) => expect(link).toHaveClass('links'));
+
+  //Criando um snapshot (forma para ver mais visual)
+  // é sempre recomendado utilizar o snapshot com mais sessões.
+  expect(links).toMatchSnapshot();
+});
